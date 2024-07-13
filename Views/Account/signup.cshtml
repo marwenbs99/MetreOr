@@ -1,0 +1,57 @@
+﻿@using MetreOr.ViewModels
+@model SignUpViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+</head>
+<body>
+    <form method="post" asp-action="Signup" enctype="multipart/form-data" onsubmit="return checkPhoneFormat()">
+        <div class="container">
+            <div id="content" class="contentContainer activeContent contentContainerBordered">
+                <div class="topside">
+                    <a href="/"><img src="/assets/logo.png" /></br></a>
+                    @*                 <b><span class="TitelTop">Sign up for CashCare</span></b> *@
+                </div>
+                <input asp-for="LastName" class="Email" type="text" id="Email" placeholder="Prénom" />
+
+                <input asp-for="FirstName" class="Email" type="text" id="Email" placeholder="Nom" />
+
+                <input asp-for="Birthday" class="Email" type="text" id="Email" placeholder="Date de naissance" />
+
+                <input asp-for="Email" class="Email" type="text" id="Email" placeholder="E-Mail Adresse" />
+
+                <b><label id="warning" style="color:red;display:none;text-align:left;font-size:14px">- Please enter a valid telephone number for Germany or France.</label></b>
+
+                <input asp-for="PhoneNumber" class="Email" type="text" id="floatingInputGridDescription" placeholder="Numéro de portable" />
+
+                <input asp-for="Adresse" class="Email" type="text" id="Email" placeholder="Adresse" />
+
+                <input asp-for="Password" class="Email" type="password" id="password" placeholder="Mot de passe" />
+
+                <input asp-for="RepeatPassword" class="Email" type="password" id="password" placeholder="Répéter le mot de passe" />
+
+                <a class="forgetPWD" href="/"></a>
+
+                <button class="signup-button" type="submit">S'inscrire</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <a target="_blank" href="/" pa-marked="1">Contactez-nous</a>
+            <a target="_blank" href="/" pa-marked="1">Confidentialité</a>
+            <a target="_blank" href="/" pa-marked="1">Légale</a>
+            <a target="_blank" href="/" pa-marked="1">conditions</a>
+            <a></a>
+        </footer>
+
+    </form>
+</body>
+</html>
+<link rel="stylesheet" href="~/css/signup.css" asp-append-version="true" />
+<script src="~/js/account.js"></script>
