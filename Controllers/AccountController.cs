@@ -4,6 +4,7 @@ using MetreOr.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
+using System.Text.RegularExpressions;
 
 namespace MetreOr.Controllers
 {
@@ -23,9 +24,26 @@ namespace MetreOr.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Signup(SignUpViewModel newUser)
         {
-            if (newUser.Password != newUser.RepeatPassword || !ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+                TempData["Statut"] = "Warning";
+                TempData["NotificationMessage"] = $"Assurez-vous de remplir correctement le formulaire!";
                 ModelState.AddModelError("", "Invalid logout attempt.");
+                return View(newUser);
+            }
+
+            if (!newUser.VerifyForm().FirstOrDefault().Key)
+            {
+                TempData["Statut"] = "Warning";
+                TempData["NotificationMessage"] = newUser.VerifyForm().FirstOrDefault().Value;
+                ModelState.AddModelError("", "Invalid logout attempt.");
+                return View(newUser);
+            }
+            
+            if (IsEmailUsed(newUser.Email))
+            {
+                TempData["Statut"] = "Warning";
+                TempData["NotificationMessage"] = $"Un compte est déjà inscrit avec cet email. Veuillez en utiliser un autre..";
                 return View(newUser);
             }
 
@@ -41,7 +59,7 @@ namespace MetreOr.Controllers
                 Adresse = newUser.Adresse,
                 Birthday = newUser.Birthday,
                 IsVerified = false,
-                DateOfInscription = DateTime.Now
+                DateOfInscription = DateTime.Now,
             };
 
             _context.AppUsers.Add(userSignup);
@@ -49,5 +67,14 @@ namespace MetreOr.Controllers
 
             return RedirectToAction("Login", "Login");
         }
+        private bool IsEmailUsed(string email)
+        {
+            if (_context.AppUsers.Where(x => x.Email.Equals(email)).Any())
+            {
+                return true;
+            }
+            return false;
+        }
     }
+
 }
