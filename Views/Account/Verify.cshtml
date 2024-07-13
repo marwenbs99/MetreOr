@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/toastr.min.css" rel="stylesheet" />
+</head>
+<body>
+    <form method="post" asp-action="Signup" enctype="multipart/form-data" onsubmit="return checkPhoneFormat()">
+        <div class="container">
+            <div id="content" class="contentContainer activeContent contentContainerBordered">
+                <div class="topside">
+                    <a href="/"><img class="logo" src="/assets/logo.png" /></br></a>
+                </div>
+
+                <a class="forgetPWD" href="/"></a>
+
+                <div>
+                    <b><label for="formFileLg" class="form-label" style="font-size:20px">Verification d'identité</label></b><br />
+                    <img class="identityCID" src="/assets/recto1.png" /></br><br />
+                </div>
+
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item" style="border-color:orange">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Pourquoi verifier son Identité ?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                La vérification de l'existence réelle des utilisateurs assure
+                                <code>une expérience d'utilisation optimale</code>, permettant ainsi à nos utilisateurs d'acheter et de vendre en toute confiance entre eux.
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item" style="border-color:orange">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Etape 1: télécharger votre Carte d'Identité (recto).
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                veuillez télécharger une image <code>claire et lisible</code> du <b>recto</b>  de votre Carte d'Identité (CID).
+                                Une qualité d'image insuffisante pourrait retarder ou empêcher l'acceptation de votre inscription. Merci pour votre coopération.
+                             </div>
+                            <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="accordion-item" style="border-color:orange">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                Etape 2: télécharger votre Carte d'Identité (verso).
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                veuillez télécharger une image <code>claire et lisible</code> du <b>verso</b>  de votre Carte d'Identité (CID).
+                                Une qualité d'image insuffisante pourrait retarder ou empêcher l'acceptation de votre inscription. Merci pour votre coopération.
+                            </div>
+                            <input class="form-control form-control-lg" id="formFileLg" type="file" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+
+                </br><br />
+                <button class="signup-button" type="submit">Envoyer</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <a target="_blank" href="/" pa-marked="1">Contactez-nous</a>
+            <a target="_blank" href="/" pa-marked="1">Confidentialité</a>
+            <a target="_blank" href="/" pa-marked="1">Légale</a>
+            <a target="_blank" href="/" pa-marked="1">conditions</a>
+            <a></a>
+        </footer>
+    </form>
+    <link rel="stylesheet" href="~/css/verify.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/toastify.min.js"></script>
+
+    @Html.Partial("_Notification")
+</body>
+</html>

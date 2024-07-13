@@ -65,8 +65,13 @@ namespace MetreOr.Controllers
             _context.AppUsers.Add(userSignup);
             _context.SaveChanges();
 
-            return RedirectToAction("Login", "Login");
+            return RedirectToAction("Verify", "Account");
         }
+        public IActionResult Verify()
+        {
+            return View();
+        }
+
         private bool IsEmailUsed(string email)
         {
             if (_context.AppUsers.Where(x => x.Email.Equals(email)).Any())
