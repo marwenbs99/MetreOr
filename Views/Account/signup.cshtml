@@ -3,12 +3,17 @@
 @{
     Layout = null;
 }
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
     <form method="post" asp-action="Signup" enctype="multipart/form-data" onsubmit="return checkPhoneFormat()">
@@ -16,7 +21,6 @@
             <div id="content" class="contentContainer activeContent contentContainerBordered">
                 <div class="topside">
                     <a href="/"><img src="/assets/logo.png" /></br></a>
-                    @*                 <b><span class="TitelTop">Sign up for CashCare</span></b> *@
                 </div>
                 <input asp-for="LastName" class="Email" type="text" id="Email" placeholder="Prénom" />
 
@@ -51,7 +55,12 @@
         </footer>
 
     </form>
+
+    <link rel="stylesheet" href="~/css/signup.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/toastify.min.js"></script>
+
+    @Html.Partial("_Notification")
 </body>
 </html>
-<link rel="stylesheet" href="~/css/signup.css" asp-append-version="true" />
-<script src="~/js/account.js"></script>

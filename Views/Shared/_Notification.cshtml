@@ -1,0 +1,39 @@
+﻿@{
+    var multiNotification = TempData["NotificationMessages"] as List<string>;
+    string singleNotification = TempData["NotificationMessage"] as string;
+    var statut = TempData["Statut"] as string;
+    if (multiNotification != null)
+    {
+        <script>
+            @foreach (var message in multiNotification)
+            {
+                <text>
+                    toastr.success('@Html.Raw(message)', 'Success');
+                </text>
+            }
+        </script>
+    }
+    if (singleNotification != null)
+    {
+        if (statut == "Warning")
+        {
+            <script>
+                toastr.warning('@Html.Raw(singleNotification)', 'Warning');
+            </script>
+        }
+        if (statut == "Success")
+        {
+            <script>
+                toastr.success('@Html.Raw(singleNotification)', 'Success');
+            </script>
+        }
+        if (statut == "Error")
+        {
+            <script>
+                toastr.error('@Html.Raw(singleNotification)', 'Error');
+            </script>
+        }
+
+    }
+    TempData["NotificationMessages"] = null;
+}
