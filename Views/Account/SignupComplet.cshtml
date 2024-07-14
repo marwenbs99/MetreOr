@@ -1,0 +1,50 @@
+﻿@using MetreOr.ViewModels
+@model SignupCompletViewModel
+@{
+    Layout = null; // ou Layout = "";
+}
+<!doctype html>
+<title>Site Maintenance</title>
+<style>
+    body {
+        text-align: center;
+        padding: 150px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    body {
+        font: 20px Helvetica, sans-serif;
+        color: #333;
+    }
+
+    article {
+        display: block;
+        text-align: left;
+        width: 650px;
+        margin: 0 auto;
+    }
+
+    a {
+        color: #dc8100;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: #333;
+            text-decoration: none;
+        }
+</style>
+
+<article>
+    <h2>Bienvenue parmi nous @Model.UserName !</h2>
+    <h3>Votre inscription a été réalisée avec succès.</h3>
+    <div>
+        <p>Nous allons vérifier vos informations et vos documents. Une fois la vérification terminée, vous <a>recevrez un email</a> confirmant que votre compte a été vérifié.</p>
+        <p> Le processus de vérification peut prendre jusqu'à 48 heures. Merci de votre patience.</p>
+        <br />
+        <p>Metre d'Or &mdash; Team</p>
+    </div>
+</article>

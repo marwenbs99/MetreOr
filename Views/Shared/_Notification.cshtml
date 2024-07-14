@@ -1,4 +1,7 @@
-﻿@{
+﻿
+<link href="~/css/toastr.min.css" rel="stylesheet" />
+<script src="~/js/toastify.min.js"></script>
+@{
     var multiNotification = TempData["NotificationMessages"] as List<string>;
     string singleNotification = TempData["NotificationMessage"] as string;
     var statut = TempData["Statut"] as string;
@@ -16,6 +19,7 @@
     if (singleNotification != null)
     {
         if (statut == "Warning")
+        
         {
             <script>
                 toastr.warning('@Html.Raw(singleNotification)', 'Warning');

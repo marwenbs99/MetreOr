@@ -4,8 +4,6 @@
     Layout = null;
 }
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,32 +11,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="~/css/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
-    <form method="post" asp-action="Signup" enctype="multipart/form-data" onsubmit="return checkPhoneFormat()">
+    <form method="post" asp-action="Signup" enctype="multipart/form-data" >
         <div class="container">
             <div id="content" class="contentContainer activeContent contentContainerBordered">
                 <div class="topside">
                     <a href="/"><img src="/assets/logo.png" /></br></a>
                 </div>
-                <input asp-for="LastName" class="Email" type="text" id="Email" placeholder="Prénom" />
 
-                <input asp-for="FirstName" class="Email" type="text" id="Email" placeholder="Nom" />
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item" style="border-color:orange">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Information personelle.
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
 
-                <input asp-for="Birthday" class="Email" type="text" id="Email" placeholder="Date de naissance" />
+                            <div class="accordion-body">
 
-                <input asp-for="Email" class="Email" type="text" id="Email" placeholder="E-Mail Adresse" />
+                                <input asp-for="LastName" class="fieldText" type="text" id="Email" placeholder="Prénom" />
 
-                <b><label id="warning" style="color:red;display:none;text-align:left;font-size:14px">- Please enter a valid telephone number for Germany or France.</label></b>
+                                <input asp-for="FirstName" class="fieldText" type="text" id="Email" placeholder="Nom" />
 
-                <input asp-for="PhoneNumber" class="Email" type="text" id="floatingInputGridDescription" placeholder="Numéro de portable" />
+                                <input asp-for="Birthday" type="date" class="form-control last" id="birthDate" name="Birthday" style="border-color:black">
 
-                <input asp-for="Adresse" class="Email" type="text" id="Email" placeholder="Adresse" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item" style="border-color:orange">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Coordonnées.
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                
+                                <input asp-for="Email" class="fieldText" type="text" id="Email" placeholder="E-Mail Adresse" />
 
-                <input asp-for="Password" class="Email" type="password" id="password" placeholder="Mot de passe" />
+                                <input asp-for="PhoneNumber" class="fieldText" type="text" id="floatingInputGridDescription" placeholder="Numéro de portable" />
 
-                <input asp-for="RepeatPassword" class="Email" type="password" id="password" placeholder="Répéter le mot de passe" />
+                                <input asp-for="Adresse" class="last" type="text" id="Email" placeholder="Adresse" />
+
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="accordion-item" style="border-color:orange">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                Sécurité.
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <input asp-for="Password" class="fieldText" type="password" id="password" placeholder="Mot de passe" />
+
+                                <input asp-for="RepeatPassword" class="last" type="password" id="password" placeholder="Répéter le mot de passe" />
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <br />
 
                 <a class="forgetPWD" href="/"></a>
 
@@ -59,7 +97,7 @@
     <link rel="stylesheet" href="~/css/signup.css" asp-append-version="true" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/toastify.min.js"></script>
+    <script src="~/js/signup.js"></script>
 
     @Html.Partial("_Notification")
 </body>

@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignorer le dossier CID sous wwwroot/assets
+wwwroot/assets/CID/

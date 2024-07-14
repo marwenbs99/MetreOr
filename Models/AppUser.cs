@@ -21,6 +21,7 @@ namespace MetreOr.Models
         [Required]
         public required string Password { get; set; }    
         public DateTime DateOfInscription { get; set; } = DateTime.Now;
+        public Guid Guid { get; set; } = Guid.NewGuid();
         public bool IsVerified  { get; set; } = false;
     }
 }

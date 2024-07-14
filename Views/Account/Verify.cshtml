@@ -1,6 +1,10 @@
-﻿@{
+﻿@using MetreOr.ViewModels
+@model IdentityVerificationViewModel
+
+@{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,23 +12,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="~/css/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
-    <form method="post" asp-action="Signup" enctype="multipart/form-data" onsubmit="return checkPhoneFormat()">
+    <form method="post" asp-action="Verify" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Email" />
+        <input type="hidden" asp-for="LastName" />
+        <input type="hidden" asp-for="FirstName" />
+        <input type="hidden" asp-for="Password" />
+        <input type="hidden" asp-for="Birthday" name="Birthday" value="@Model.Birthday.ToString("yyyy-MM-dd")" />
+        <input type="hidden" asp-for="Adresse" />
+        <input type="hidden" asp-for="PhoneNumber" />
+        <input type="hidden" name="returnUrl" value="@Context.Request.Path + @Context.Request.QueryString" />
+
         <div class="container">
             <div id="content" class="contentContainer activeContent contentContainerBordered">
                 <div class="topside">
                     <a href="/"><img class="logo" src="/assets/logo.png" /></br></a>
                 </div>
-
                 <a class="forgetPWD" href="/"></a>
-
                 <div>
                     <b><label for="formFileLg" class="form-label" style="font-size:20px">Verification d'identité</label></b><br />
                     <img class="identityCID" src="/assets/recto1.png" /></br><br />
                 </div>
-
                 <div class="accordion accordion-flush" id="accordionFlushExample">
                     <div class="accordion-item" style="border-color:orange">
                         <h2 class="accordion-header" id="flush-headingOne">
@@ -36,7 +45,6 @@
                             <div class="accordion-body">
                                 La vérification de l'existence réelle des utilisateurs assure
                                 <code>une expérience d'utilisation optimale</code>, permettant ainsi à nos utilisateurs d'acheter et de vendre en toute confiance entre eux.
-
                             </div>
                         </div>
                     </div>
@@ -50,8 +58,8 @@
                             <div class="accordion-body">
                                 veuillez télécharger une image <code>claire et lisible</code> du <b>recto</b>  de votre Carte d'Identité (CID).
                                 Une qualité d'image insuffisante pourrait retarder ou empêcher l'acceptation de votre inscription. Merci pour votre coopération.
-                             </div>
-                            <input class="form-control" id="formFile" type="file" accept="image/*">
+                            </div>
+                            <input class="form-control" id="formFile" type="file" accept="image/*" asp-for="CIDRecto">
                         </div>
                     </div>
                     <div class="accordion-item" style="border-color:orange">
@@ -65,11 +73,10 @@
                                 veuillez télécharger une image <code>claire et lisible</code> du <b>verso</b>  de votre Carte d'Identité (CID).
                                 Une qualité d'image insuffisante pourrait retarder ou empêcher l'acceptation de votre inscription. Merci pour votre coopération.
                             </div>
-                            <input class="form-control" id="formFile" type="file" accept="image/*">
+                            <input class="form-control" id="formFile" type="file" accept="image/*" asp-for="CIDVerso">
                         </div>
                     </div>
                 </div>
-
                 </br>
                 <button class="signup-button" type="submit">Envoyer</button>
             </div>
@@ -83,11 +90,12 @@
             <a></a>
         </footer>
     </form>
+
     <link rel="stylesheet" href="~/css/verify.css" asp-append-version="true" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/toastify.min.js"></script>
 
     @Html.Partial("_Notification")
+
 </body>
 </html>
