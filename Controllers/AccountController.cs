@@ -75,6 +75,14 @@ namespace MetreOr.Controllers
 
             var guid = Guid.NewGuid();
             string uploadsFolder = _webHostEnvironment.WebRootPath + "\\assets\\CID\\" + guid;
+
+           if( _context.AppUsers.Where(x => x.Email.Equals(identity.Email)).Any())
+            {
+                TempData["Statut"] = "Warning";
+                TempData["NotificationMessage"] = $"Utilisateur déjà inscrit !";
+                return LocalRedirect(returnURL);
+            }
+
             bool isSaved = await SaveCID(uploadsFolder, identity.CIDRecto, identity.CIDVerso);
 
             if (isSaved)
