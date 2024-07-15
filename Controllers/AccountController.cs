@@ -70,7 +70,7 @@ namespace MetreOr.Controllers
             {
                 TempData["Statut"] = "Warning";
                 TempData["NotificationMessage"] = $"Les fichiers téléchargés pour la carte d identité recto et verso doivent être de type image.";
-                return LocalRedirect(returnURL);
+                return LocalRedirect(returnURL ?? "/Login");
             }
 
             var guid = Guid.NewGuid();
@@ -80,7 +80,7 @@ namespace MetreOr.Controllers
             {
                 TempData["Statut"] = "Warning";
                 TempData["NotificationMessage"] = $"Utilisateur déjà inscrit !";
-                return LocalRedirect(returnURL);
+                return LocalRedirect(returnURL ?? "/Login");
             }
 
             bool isSaved = await SaveCID(uploadsFolder, identity.CIDRecto, identity.CIDVerso);
@@ -153,7 +153,7 @@ namespace MetreOr.Controllers
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
