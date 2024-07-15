@@ -7,7 +7,7 @@ namespace MetreOr.Controllers
     public class LoginController : Controller
     {
         [AllowAnonymous]
-        public ActionResult Login()
+        public ActionResult Index()
         {
             return View();
         }
