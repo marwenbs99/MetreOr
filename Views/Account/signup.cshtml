@@ -48,15 +48,13 @@
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
-                                
+                                <code>L'E-mail</code> ainsi que <code>le numéro de téléphone</code> doivent être dans <code>le bon format</code>.
                                 <input asp-for="Email" class="fieldText" type="text" id="Email" placeholder="E-Mail Adresse" />
 
                                 <input asp-for="PhoneNumber" class="fieldText" type="text" id="floatingInputGridDescription" placeholder="Numéro de portable" />
 
                                 <input asp-for="Adresse" class="last" type="text" id="Email" placeholder="Adresse" />
-
-                            </div>
-                           
+                            </div>                          
                         </div>
                     </div>
                     <div class="accordion-item" style="border-color:orange">
@@ -67,6 +65,8 @@
                         </h2>
                         <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
+                                Veuillez noter que <code>le mot de passe</code> doit contenir au moin <code>8 caractères</code> dont une est un <code>lettre majuscule</code> .
+                                    
                                 <input asp-for="Password" class="fieldText" type="password" id="password" placeholder="Mot de passe" />
 
                                 <input asp-for="RepeatPassword" class="last" type="password" id="password" placeholder="Répéter le mot de passe" />
