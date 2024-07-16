@@ -9,7 +9,7 @@
     width: 460px; 
     height: 660px;
     margin: auto;
-    margin-top: 120px; 
+    margin-top: 60px; 
     text-align: center;
 }
 
@@ -131,9 +131,9 @@ img {
     overflow: hidden;
 }
 .contentContainer {
-    position: relative;
+   /* position: relative;*/
     margin: 0 auto;
-    padding: 30px 10% 50px;
+    padding: 10px 10% 50px;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
     -khtml-border-radius: 12px;

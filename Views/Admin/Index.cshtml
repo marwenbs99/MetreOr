@@ -1,0 +1,42 @@
+﻿@using MetreOr.ViewModels.AdminVM
+@model UserToVerifyViewModel
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date d'inscription</th>
+            <th>Nom et prénom</th>
+            <th>Date de naissance</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var user in Model.UserToVerify.OrderBy(x=> x.DateOfInscription))
+            {
+                <tr>
+                    <td>@user.DateOfInscription</td>
+                    <td>@user.FirstName @user.LastName</td>
+                    <td>@user.Birthday.ToString("yyyy/MM/dd")</td>
+                    <td><button>Modifier</button> <button>Supprimer</button></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
