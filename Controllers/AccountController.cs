@@ -3,6 +3,7 @@ using MetreOr.Models;
 using MetreOr.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 
 namespace MetreOr.Controllers
@@ -74,7 +75,6 @@ namespace MetreOr.Controllers
             }
 
             var guid = Guid.NewGuid();
-            string uploadsFolder = _webHostEnvironment.WebRootPath + "\\assets\\CID\\" + guid;
 
            if( _context.AppUsers.Where(x => x.Email.Equals(identity.Email)).Any())
             {
@@ -83,7 +83,7 @@ namespace MetreOr.Controllers
                 return LocalRedirect(returnURL ?? "/Login");
             }
 
-            bool isSaved = await SaveCID(uploadsFolder, identity.CIDRecto, identity.CIDVerso);
+            bool isSaved = await SaveCID(guid.ToString(), identity.CIDRecto, identity.CIDVerso);
 
             if (isSaved)
             {
@@ -126,26 +126,27 @@ namespace MetreOr.Controllers
             return false;
         }
 
-        private async Task<bool> SaveCID(string path, IFormFile CIDRecto, IFormFile CIDVerso)
+        private async Task<bool> SaveCID(string guid, IFormFile CIDRecto, IFormFile CIDVerso)
         {
-            if (!Directory.Exists(path))
+            string uploadsFolder = _webHostEnvironment.WebRootPath + "\\assets\\CID\\" + guid;
+            if (!Directory.Exists(uploadsFolder))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(uploadsFolder);
             }
  
             try
             {
                 // Save recto
-                string uniqueFileNameRecto = Guid.NewGuid().ToString() + "_" + CIDRecto.FileName;
-                string filePathRecto = Path.Combine(path, uniqueFileNameRecto);
+                string uniqueFileNameRecto = guid + "recto.png";
+                string filePathRecto = Path.Combine(uploadsFolder, uniqueFileNameRecto);
                 using (var fileStream = new FileStream(filePathRecto, FileMode.Create))
                 {
                     await CIDRecto.CopyToAsync(fileStream);
                 }
 
                 // Save verso
-                string uniqueFileNameVerso = Guid.NewGuid().ToString() + "_" + CIDVerso.FileName;
-                string filePathVerso = Path.Combine(path, uniqueFileNameVerso);
+                string uniqueFileNameVerso = guid + "verso.png";
+                string filePathVerso = Path.Combine(uploadsFolder, uniqueFileNameVerso);
                 using (var fileStream = new FileStream(filePathVerso, FileMode.Create))
                 {
                     await CIDVerso.CopyToAsync(fileStream);

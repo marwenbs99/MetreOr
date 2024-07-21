@@ -1,0 +1,152 @@
+﻿@using MetreOr.Models
+@model AppUser
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        height: 30px;
+        padding: 10px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+@{
+    var imgRecto = "CID/" + Model.Guid.ToString() + "/" + Model.Guid.ToString() + "recto.PNG";
+    var imgVerso = "CID/" + Model.Guid.ToString() + "/" + Model.Guid.ToString() + "verso.PNG";
+}
+<!-- Page Content -->
+<div class="container">
+    <!-- Portfolio Item Heading -->
+    <h1 class="my-4">
+        <small>@Model.FirstName @Model.LastName</small>
+    </h1>
+    <br />
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+        <div class="col-md-4" style="text-align:center">
+            <img style="width:300px;height:200px" class="img-fluid" src="/assets/@imgRecto" + alt="">
+            <br /><br />
+            <img style="width:300px;height:200px" class="img-fluid" src="/assets/@imgVerso" + alt="">
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="my-3">Informations personnelles</h3>
+            <table>
+                <tr>
+                    <td>
+                        Prénom
+                    </td>
+                    <td style="padding:4px">
+                        <input type="text" value="@Model.FirstName" asp-for="@Model.FirstName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Nom correct ?
+                    </td>
+                    <td style="padding:4px">
+                        <input type="text" value="@Model.LastName" asp-for="@Model.LastName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date de naissance
+                    </td>
+                    <td style="padding:4px">
+                        @Model.Birthday.ToString("dd/MM/yyyy")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Adresse
+                    </td>
+                    <td style="padding:4px">
+                        <input type="text" value="@Model.Adresse" asp-for="@Model.Adresse" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email
+                    </td>
+                    <td style="padding:4px">
+                        @Model.Email
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Numéro de téléphone
+                    </td>
+                    <td style="padding:4px">
+                        @Model.PhoneNumber
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <button value="corriger" style="width:100%;" class="btn btn-danger">Corriger</button>
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="my-3">Verification</h3>
+            <table>
+                <tr>
+                    <td>
+                        Prénom correct ?
+                    </td>
+                    <td style="text-align:center">
+                        <input type="checkbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Nom correct ?
+                    </td>
+                    <td style="text-align:center">
+                        <input type="checkbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date de naissance correct ?
+                    </td>
+                    <td style="text-align:center">
+                        <input type="checkbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Adresse correct ?
+                    </td>
+                    <td style="text-align:center">
+                        <input type="checkbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email format correct ?
+                    </td>
+                    <td style="text-align:center">
+                        <input type="checkbox" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Numéro de téléphone correct ?
+                    </td>
+                    <td style="text-align:center">
+                        <input type="checkbox" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <button value="envoyer" style="width:100%" class="btn btn-success">Envoyer</button>
+        </div>
+    </div>
+</div>

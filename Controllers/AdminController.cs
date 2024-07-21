@@ -22,5 +22,16 @@ namespace MetreOr.Controllers
 
             return View(verifyUserList);
         }
+
+        public ActionResult ConfirmUser(int id)
+        {
+            var currentUser = _context.AppUsers.FirstOrDefault(x => x.Id == id);
+            if (currentUser == null)
+            {
+                return View();
+            }
+
+            return View(currentUser);
+        }
     }
 }

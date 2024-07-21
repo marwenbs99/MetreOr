@@ -34,7 +34,10 @@
                     <td>@user.DateOfInscription</td>
                     <td>@user.FirstName @user.LastName</td>
                     <td>@user.Birthday.ToString("yyyy/MM/dd")</td>
-                    <td><button>Modifier</button> <button>Supprimer</button></td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="ConfirmUser" asp-route-id="@user.Id">Verifier</a>
+                    <button>Supprimer</button>
+                    </td>
                 </tr>
             }
         }
