@@ -35,7 +35,7 @@
                     <td>@user.FirstName @user.LastName</td>
                     <td>@user.Birthday.ToString("yyyy/MM/dd")</td>
                     <td>
-                        <a asp-controller="Admin" asp-action="ConfirmUser" asp-route-id="@user.Id">Verifier</a>
+                        <a href="@Url.Action("ConfirmUser","Admin",new{guidit = user.Guid})"> verifier</a>
                     <button>Supprimer</button>
                     </td>
                 </tr>

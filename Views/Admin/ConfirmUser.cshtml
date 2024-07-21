@@ -1,5 +1,6 @@
-﻿@using MetreOr.Models
-@model AppUser
+﻿@using MetreOr.ViewModels.AdminVM
+@using MetreOr.Enum
+@model CurrentUserToVerifyViewModel
 
 <style>
     table {
@@ -18,10 +19,12 @@
     }
 </style>
 @{
-    var imgRecto = "CID/" + Model.Guid.ToString() + "/" + Model.Guid.ToString() + "recto.PNG";
-    var imgVerso = "CID/" + Model.Guid.ToString() + "/" + Model.Guid.ToString() + "verso.PNG";
+    var imgRecto = "CID/" + Model.UserGuid.ToString() + "/" + Model.UserGuid.ToString() + "recto.PNG";
+    var imgVerso = "CID/" + Model.UserGuid.ToString() + "/" + Model.UserGuid.ToString() + "verso.PNG";
 }
-<!-- Page Content -->
+<form method="post" asp-action="ConfirmUser" enctype="multipart/form-data" >
+    <input type="hidden" asp-for="@Model.UserGuid" value="@Model.UserGuid" />
+
 <div class="container">
     <!-- Portfolio Item Heading -->
     <h1 class="my-4">
@@ -50,7 +53,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Nom correct ?
+                        Nom
                     </td>
                     <td style="padding:4px">
                         <input type="text" value="@Model.LastName" asp-for="@Model.LastName" />
@@ -61,6 +64,7 @@
                         Date de naissance
                     </td>
                     <td style="padding:4px">
+                            <input type="hidden" value="@Model.Birthday" asp-for="@Model.Birthday" />
                         @Model.Birthday.ToString("dd/MM/yyyy")
                     </td>
                 </tr>
@@ -77,6 +81,7 @@
                         Email
                     </td>
                     <td style="padding:4px">
+                            <input type="hidden" value="@Model.Email" asp-for="@Model.Email" />
                         @Model.Email
                     </td>
                 </tr>
@@ -85,12 +90,13 @@
                         Numéro de téléphone
                     </td>
                     <td style="padding:4px">
+                            <input type="hidden" value="@Model.PhoneNumber" asp-for="@Model.PhoneNumber" />
                         @Model.PhoneNumber
                     </td>
                 </tr>
             </table>
             <br />
-            <button value="corriger" style="width:100%;" class="btn btn-danger">Corriger</button>
+                <button name="ActionType" value="@BtnActionType.corriger.ToString()" style="width:100%;" class="btn btn-danger">@BtnActionType.corriger.ToString()</button>
         </div>
 
         <div class="col-md-4">
@@ -146,7 +152,8 @@
                 </tr>
             </table>
             <br />
-            <button value="envoyer" style="width:100%" class="btn btn-success">Envoyer</button>
+                <button name="ActionType" value="@BtnActionType.envoyer.ToString()" style="width:100%" class="btn btn-success">@BtnActionType.envoyer.ToString()</button>
         </div>
     </div>
 </div>
+</form>
