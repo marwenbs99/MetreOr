@@ -22,138 +22,104 @@
     var imgRecto = "CID/" + Model.UserGuid.ToString() + "/" + Model.UserGuid.ToString() + "recto.PNG";
     var imgVerso = "CID/" + Model.UserGuid.ToString() + "/" + Model.UserGuid.ToString() + "verso.PNG";
 }
-<form method="post" asp-action="ConfirmUser" enctype="multipart/form-data" >
+<form method="post" asp-action="ConfirmUser" enctype="multipart/form-data">
     <input type="hidden" asp-for="@Model.UserGuid" value="@Model.UserGuid" />
 
-<div class="container">
-    <!-- Portfolio Item Heading -->
-    <h1 class="my-4">
-        <small>@Model.FirstName @Model.LastName</small>
-    </h1>
-    <br />
-    <!-- Portfolio Item Row -->
-    <div class="row">
+    <div class="container">
+        <!-- Portfolio Item Heading -->
+        <h1 class="my-4">
+            <small>@Model.FirstName @Model.LastName</small>
+        </h1>
+        <br />
+        <!-- Portfolio Item Row -->
+        <div class="row">
 
-        <div class="col-md-4" style="text-align:center">
-            <img style="width:300px;height:200px" class="img-fluid" src="/assets/@imgRecto" + alt="">
-            <br /><br />
-            <img style="width:300px;height:200px" class="img-fluid" src="/assets/@imgVerso" + alt="">
-        </div>
+            <div class="col-md-4" style="text-align:center">
+                <img style="width:300px;height:200px" class="img-fluid" src="/assets/@imgRecto" + alt="">
+                <br /><br />
+                <img style="width:300px;height:200px" class="img-fluid" src="/assets/@imgVerso" + alt="">
+            </div>
 
-        <div class="col-md-4">
-            <h3 class="my-3">Informations personnelles</h3>
-            <table>
-                <tr>
-                    <td>
-                        Prénom
-                    </td>
-                    <td style="padding:4px">
-                        <input type="text" value="@Model.FirstName" asp-for="@Model.FirstName" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Nom
-                    </td>
-                    <td style="padding:4px">
-                        <input type="text" value="@Model.LastName" asp-for="@Model.LastName" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Date de naissance
-                    </td>
-                    <td style="padding:4px">
+            <div class="col-md-4">
+                <h3 class="my-3">Informations personnelles</h3>
+                <table>
+                    <tr>
+                        <td>
+                            Prénom
+                        </td>
+                        <td style="padding:4px">
+                            <input type="text" value="@Model.FirstName" asp-for="@Model.FirstName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nom
+                        </td>
+                        <td style="padding:4px">
+                            <input type="text" value="@Model.LastName" asp-for="@Model.LastName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Date de naissance
+                        </td>
+                        <td style="padding:4px">
                             <input type="hidden" value="@Model.Birthday" asp-for="@Model.Birthday" />
-                        @Model.Birthday.ToString("dd/MM/yyyy")
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Adresse
-                    </td>
-                    <td style="padding:4px">
-                        <input type="text" value="@Model.Adresse" asp-for="@Model.Adresse" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Email
-                    </td>
-                    <td style="padding:4px">
+                            @Model.Birthday.ToString("dd/MM/yyyy")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Adresse
+                        </td>
+                        <td style="padding:4px">
+                            <input type="text" value="@Model.Adresse" asp-for="@Model.Adresse" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email
+                        </td>
+                        <td style="padding:4px">
                             <input type="hidden" value="@Model.Email" asp-for="@Model.Email" />
-                        @Model.Email
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Numéro de téléphone
-                    </td>
-                    <td style="padding:4px">
+                            @Model.Email
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Numéro de téléphone
+                        </td>
+                        <td style="padding:4px">
                             <input type="hidden" value="@Model.PhoneNumber" asp-for="@Model.PhoneNumber" />
-                        @Model.PhoneNumber
-                    </td>
-                </tr>
-            </table>
-            <br />
+                            @Model.PhoneNumber
+                        </td>
+                    </tr>
+                </table>
+                <br />
                 <button name="ActionType" value="@BtnActionType.corriger.ToString()" style="width:100%;" class="btn btn-danger">@BtnActionType.corriger.ToString()</button>
-        </div>
+            </div>
 
-        <div class="col-md-4">
-            <h3 class="my-3">Verification</h3>
-            <table>
-                <tr>
-                    <td>
-                        Prénom correct ?
-                    </td>
-                    <td style="text-align:center">
-                        <input type="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Nom correct ?
-                    </td>
-                    <td style="text-align:center">
-                        <input type="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Date de naissance correct ?
-                    </td>
-                    <td style="text-align:center">
-                        <input type="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Adresse correct ?
-                    </td>
-                    <td style="text-align:center">
-                        <input type="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Email format correct ?
-                    </td>
-                    <td style="text-align:center">
-                        <input type="checkbox" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Numéro de téléphone correct ?
-                    </td>
-                    <td style="text-align:center">
-                        <input type="checkbox" />
-                    </td>
-                </tr>
-            </table>
-            <br />
+            <div class="col-md-4">
+                <h3 class="my-3">Verification</h3>
+                <table>
+                    @{
+                        for (var i=0; i< Model.CheckBoxes.Count();i++)
+                        {
+                        <tr>
+                            <td>
+                                    <input type="hidden" asp-for="@Model.CheckBoxes[i].Key" value="@Model.CheckBoxes[i].Key" />
+                                    @Model.CheckBoxes[i].Key
+                            </td>
+                            <td style="text-align:center">
+                                    <input type="checkbox" asp-for="@Model.CheckBoxes[i].Value" />
+                            </td>
+                        </tr>
+                        }
+                    }
+                </table>
+                <br />
                 <button name="ActionType" value="@BtnActionType.envoyer.ToString()" style="width:100%" class="btn btn-success">@BtnActionType.envoyer.ToString()</button>
+            </div>
         </div>
     </div>
-</div>
 </form>
