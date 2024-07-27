@@ -1,6 +1,7 @@
 ﻿using MetreOr.Data;
 using MetreOr.Enum;
 using MetreOr.Models;
+using MetreOr.Services;
 using MetreOr.ViewModels.AdminVM;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,11 @@ namespace MetreOr.Controllers
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public AdminController(ApplicationDbContext context)
+        private readonly IEmailService _emailService;
+        public AdminController(ApplicationDbContext context, IEmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
 
         public ActionResult Index()
@@ -65,6 +68,7 @@ namespace MetreOr.Controllers
         [HttpPost]
         public ActionResult ConfirmUser(CurrentUserToVerifyViewModel userToVerify)
         {
+
             var currentUser = _context.AppUsers.FirstOrDefault(x => x.Guid == userToVerify.UserGuid);
             switch (userToVerify.ActionType)
             {
@@ -80,6 +84,7 @@ namespace MetreOr.Controllers
                     {
                         currentUser.IsVerified = true;
                         _context.AppUsers.Update(currentUser);
+                        _emailService.SendEmailAsync(currentUser.Email, "Compte vérifié", "félicitation , Votre compte vient dêtre vérifié. \r\nVous pouvez désormais vous connecter à votre compte.\r\n Nous vous souhaitons une bonne utilisation et de bons investissements.\r\n \r\n MetreDOR team. ");
                         _context.SaveChanges();
                     }
                     return RedirectToAction("Index");

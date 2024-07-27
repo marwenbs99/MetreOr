@@ -1,7 +1,16 @@
 using MetreOr.Data;
+using MetreOr.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Ajouter la configuration pour le service email
+builder.Services.AddSingleton<IEmailService>(new EmailService(
+    builder.Configuration["Email:SmtpServer"],
+    int.Parse(builder.Configuration["Email:SmtpPort"]),
+    builder.Configuration["Email:SmtpUser"],
+    builder.Configuration["Email:SmtpPass"]
+));
 
 //Add the DefaultConnection
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
